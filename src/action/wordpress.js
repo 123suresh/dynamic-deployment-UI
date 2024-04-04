@@ -1,0 +1,12 @@
+const WORDPRESS_PREFIX = '@WORDPRESS';
+
+export const CREATE_WORDPRESS = `${WORDPRESS_PREFIX}/CREATE_WORDPRESS`;
+export const CREATE_WORDPRESS_SUCCESS = `${WORDPRESS_PREFIX}/CREATE_WORDPRESS_SUCCESS`;
+export const CREATE_WORDPRESS_FAILURE = `${WORDPRESS_PREFIX}/CREATE_WORDPRESS_FAILURE`;
+
+export const createWordpress = (data) => {
+    return({
+        type: CREATE_WORDPRESS,
+        data:{data}
+    })
+}
