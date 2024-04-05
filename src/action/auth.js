@@ -50,7 +50,14 @@ export const GETPROFILE = `${PREFIX}/GETPROFILE`
 export const LOGIN_SUCCESS = `${PREFIX}/LOGIN_SUCCESS`
 export const LOGIN_FAILURE = `${PREFIX}/LOGIN_FAILURE`
 
+export const  LOGOUT = `@Logout/LOGOUT`
+export const  LOGOUT_SUCCESS = `@Logout/LOGOUT_SUCCESS`
+
 export const login = (payload) =>({
   type: LOGIN,
   data:{payload}
+})
+
+export const logout = () =>({
+  type: LOGOUT
 })

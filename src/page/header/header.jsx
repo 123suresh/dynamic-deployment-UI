@@ -6,7 +6,7 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
-import { auth, authLogout } from "../../action/auth";
+import { auth, authLogout, logout } from "../../action/auth";
 import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { makeStyles } from "@material-ui/core";
@@ -70,7 +70,7 @@ const ResponsiveAppBar = () => {
   };
 
   function handleLogout() {
-    // dispatch(authLogout(""));
+    dispatch(logout());
   }
 
   const handleActiveLink = (link) => {
@@ -81,24 +81,24 @@ const ResponsiveAppBar = () => {
     <div className={classes.navbar__main}>
       <div className={classes.link_set}>
         <Link
-          onClick={() => handleActiveLink("movieList")}
+          onClick={() => handleActiveLink("home")}
           className={`${classes.link} ${
-            window.location.pathname === "/movieList"
+            window.location.pathname === "/home"
               ? classes.active__link
               : ""
           }`}
-          to="/movieList"
+          to="/home"
         >
           HOME
         </Link>
         <Link
-          onClick={() => handleActiveLink("watchList")}
+          onClick={() => handleActiveLink("detail")}
           className={`${classes.link} ${
-            window.location.pathname === "/watchList"
+            window.location.pathname === "/detail"
               ? classes.active__link
               : ""
           }`}
-          to="/watchList"
+          to="/detail"
         >
           DETAILS
         </Link>

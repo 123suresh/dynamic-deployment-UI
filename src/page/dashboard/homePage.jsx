@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadMovieList } from "../../action/movie";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,15 +9,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from '@mui/material/TextField';
-import { createWordpress } from "../../action/wordpress";
+import { createWordpress, fetchWordpressDetails } from "../../action/wordpress";
 
 const useStyles = makeStyles((theme) => ({
 }));
 
-function MovieList() {
+function HomePage() {
   const classes = useStyles();
-
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   let dispatch = useDispatch();
 
@@ -27,6 +24,10 @@ function MovieList() {
     name:"",
     namespace:""
   });
+
+  useEffect(()=>{
+    dispatch(fetchWordpressDetails())
+  },[])
 
   // payment integration
   const makePayment = async () => {
@@ -96,19 +97,10 @@ function MovieList() {
     }
   }
 
-  const handleCreateWordPress = async() => {
-    // const body = wordpressData
-    // const headers = {
-    //   "Content-Type": "application/json",
-    //   // Authorization: `bearer ${isAuthenticated}`,
-    // };
-    // const response = await fetch("http://localhost:8083/wordpress", {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: JSON.stringify(body),
-    // });
-    // handleClose()
-    dispatch(createWordpress())
+  const handleCreateWordPress = () => {
+    const payload = wordpressData
+    dispatch(createWordpress(payload))
+    handleClose()
   }
 
   return (
@@ -176,4 +168,4 @@ function MovieList() {
   );
 }
 
-export default MovieList;
+export default HomePage;

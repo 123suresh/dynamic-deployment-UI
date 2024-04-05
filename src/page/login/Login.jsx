@@ -10,7 +10,6 @@ import * as Yup from "yup";
 import { makeStyles } from "@material-ui/core";
 //for translation
 import { useTranslation } from "react-i18next";
-import { handleChangeLanguage } from "../../action/movie";
 
 const useStyles = makeStyles((theme) => ({
   inputFieldErr: {
@@ -56,10 +55,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Login() {
   const classes = useStyles();
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const loginDetail = useSelector((state)=> state.Auth.loginDetail)
   const token = useSelector((state)=> state.Auth.token)
-  console.log("isAuthenticated login => ", token)
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
 
@@ -96,7 +93,7 @@ function Login() {
   //for translation
   const { t, i18n } = useTranslation();
 
-  if (token) return <Navigate to="/movieList" />;
+  if (token) return <Navigate to="/home" />;
   return (
     <div data-test="loginContainer">
       <div className={classes.login__main}>
