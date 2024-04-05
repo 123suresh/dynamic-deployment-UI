@@ -2,8 +2,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import redux from './index'
-import authSaga from '../saga/authSaga'
+import redux from './index';
+import authSaga from '../saga/authSaga';
+import wordpressSaga from '../saga/wordpressSaga';
 
 const persistConfig = {
     key: 'root',
@@ -27,6 +28,7 @@ export default () => {
     const persistor = persistStore(store)
 
     sagaMiddleware.run(authSaga);
+    sagaMiddleware.run(wordpressSaga);
     
     return { store, persistor }
 }

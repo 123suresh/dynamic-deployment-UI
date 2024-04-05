@@ -9,15 +9,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import TextField from '@mui/material/TextField';
-import { createWordpress } from "../../action/wordpress";
+import { createWordpress, fetchWordpressDetails } from "../../action/wordpress";
 
 const useStyles = makeStyles((theme) => ({
 }));
 
 function HomePage() {
   const classes = useStyles();
-
-  // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   let dispatch = useDispatch();
 
@@ -26,6 +24,10 @@ function HomePage() {
     name:"",
     namespace:""
   });
+
+  useEffect(()=>{
+    dispatch(fetchWordpressDetails())
+  },[])
 
   // payment integration
   const makePayment = async () => {
@@ -95,8 +97,10 @@ function HomePage() {
     }
   }
 
-  const handleCreateWordPress = async() => {
-    dispatch(createWordpress())
+  const handleCreateWordPress = () => {
+    const payload = wordpressData
+    dispatch(createWordpress(payload))
+    handleClose()
   }
 
   return (
