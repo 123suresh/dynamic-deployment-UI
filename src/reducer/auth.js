@@ -1,5 +1,5 @@
 // import * as types from "../constant/actionTypes";
-import { LOGIN_SUCCESS } from "../action/auth";
+import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from "../action/auth";
 
 const INITIAL_STATE = {
   loginDetail: null,
@@ -24,11 +24,8 @@ function Auth(state = INITIAL_STATE, action) {
         loginDetail: action.data.data.user,
         token: action.data.data.access_token
       };
-    // case types.HANDLE_LANGUAGE_CHANGE:
-    //   return {
-    //     ...state,
-    //     selectLanguage: action.payload,
-    //   };
+    case LOGOUT_SUCCESS:
+      return INITIAL_STATE;
     default:
       return state;
   }

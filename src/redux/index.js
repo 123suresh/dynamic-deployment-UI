@@ -1,10 +1,8 @@
 import wordpressReducer from "../reducer/wordpress";
-import movieInfo from "../reducer/movie";
 import Auth from "../reducer/auth";
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    // movieInfo,
     // wordpressReducer,
     Auth,
 })

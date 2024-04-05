@@ -1,5 +1,5 @@
 import { call, takeLatest, put } from "redux-saga/effects";
-import { LOGIN, LOGIN_SUCCESS } from "../action/auth";
+import { LOGIN, LOGIN_SUCCESS, LOGOUT, LOGOUT_SUCCESS } from "../action/auth";
 import axios from "axios";
   
   function loginApiCall(payload) {
@@ -31,7 +31,16 @@ import axios from "axios";
     }
   }
 
+  function* logout() {
+    try {
+      yield put({ type: LOGOUT_SUCCESS});
+    } catch (error) {
+        console.log("error while logout")
+    }
+  }
+
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export default function* watcherSaga() {
     yield takeLatest(LOGIN, login);
+    yield takeLatest(LOGOUT, logout);
   }

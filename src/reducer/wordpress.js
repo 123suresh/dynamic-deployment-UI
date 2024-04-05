@@ -1,5 +1,8 @@
 import { CREATE_WORDPRESS, CREATE_WORDPRESS_FAILURE, CREATE_WORDPRESS_SUCCESS } from "../action/wordpress";
-import initialState from "./initialState";
+// import initialState from "./initialState";
+
+const initialState = {
+};
 
 const wordpressReducer = (state = initialState, payload) => {
   switch (payload.type) {

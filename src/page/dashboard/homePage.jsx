@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loadMovieList } from "../../action/movie";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { loadStripe } from "@stripe/stripe-js";
@@ -15,7 +14,7 @@ import { createWordpress } from "../../action/wordpress";
 const useStyles = makeStyles((theme) => ({
 }));
 
-function MovieList() {
+function HomePage() {
   const classes = useStyles();
 
   // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -97,17 +96,6 @@ function MovieList() {
   }
 
   const handleCreateWordPress = async() => {
-    // const body = wordpressData
-    // const headers = {
-    //   "Content-Type": "application/json",
-    //   // Authorization: `bearer ${isAuthenticated}`,
-    // };
-    // const response = await fetch("http://localhost:8083/wordpress", {
-    //   method: "POST",
-    //   headers: headers,
-    //   body: JSON.stringify(body),
-    // });
-    // handleClose()
     dispatch(createWordpress())
   }
 
@@ -176,4 +164,4 @@ function MovieList() {
   );
 }
 
-export default MovieList;
+export default HomePage;
