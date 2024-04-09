@@ -8,6 +8,10 @@ export const FETCH_WORDPRESS_DETAILS = `${WORDPRESS_PREFIX}/FETCH_WORDPRESS_DETA
 export const FETCH_WORDPRESS_DETAILS_SUCCESS = `${WORDPRESS_PREFIX}/FETCH_WORDPRESS_DETAILS_SUCCESS`;
 export const FETCH_WORDPRESS_DETAILS_FAILURE = `${WORDPRESS_PREFIX}/FETCH_WORDPRESS_DETAILS_FAILURE`;
 
+export const DELETE_WORDPRESS = `${WORDPRESS_PREFIX}/DELETE_WORDPRESS`;
+export const DELETE_WORDPRESS_SUCCESS = `${WORDPRESS_PREFIX}/DELETE_WORDPRESS_SUCCESS`;
+export const DELETE_WORDPRESS_FAILURE = `${WORDPRESS_PREFIX}/DELETE_WORDPRESS_FAILURE`;
+
 export const createWordpress = (data) => {
     return({
         type: CREATE_WORDPRESS,
@@ -18,5 +22,12 @@ export const createWordpress = (data) => {
 export const fetchWordpressDetails = () =>{
     return ({
         type: FETCH_WORDPRESS_DETAILS
+    })
+}
+
+export const deleteWordpress = (data) =>{
+    return ({
+        type: DELETE_WORDPRESS,
+        data:{data}
     })
 }
