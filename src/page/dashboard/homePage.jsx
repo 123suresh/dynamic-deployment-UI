@@ -3,31 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Grid } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { loadStripe } from "@stripe/stripe-js";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import TextField from '@mui/material/TextField';
 import { createWordpress, fetchWordpressDetails } from "../../action/wordpress";
+import WordpressTable from "../../components/home/WordpressTable";
+import HomeDialog from "../../components/home/HomeDialog";
 
-const useStyles = makeStyles((theme) => ({
-}));
+const useStyles = makeStyles((theme) => ({}));
 
 function HomePage() {
   const classes = useStyles();
 
   let dispatch = useDispatch();
 
+  const wordpressDetails = useSelector(
+    (state) => state.wordpressData.wordpressDetails
+  );
+
   const [dialog, setDialog] = useState(false);
   const [wordpressData, setWordpressData] = useState({
-    name:"",
-    namespace:""
+    name: "",
+    namespace: "",
   });
 
-  useEffect(()=>{
-    dispatch(fetchWordpressDetails())
-  },[])
+  useEffect(() => {
+    dispatch(fetchWordpressDetails());
+  }, []);
 
   // payment integration
   const makePayment = async () => {
@@ -79,92 +78,67 @@ function HomePage() {
     }
   };
 
-
   const handleClickOpen = () => {
     setDialog(true);
   };
 
   const handleClose = () => {
-    setWordpressData({name:"", namespace:""})
+    setWordpressData({ name: "", namespace: "" });
     setDialog(false);
   };
 
   const handleDataChange = (e, type) => {
-    if(type === "name"){
-      setWordpressData({...wordpressData, name:e.target.value})
-    }else{
-      setWordpressData({...wordpressData, namespace:e.target.value})
+    if (type === "name") {
+      setWordpressData({ ...wordpressData, name: e.target.value });
+    } else {
+      setWordpressData({ ...wordpressData, namespace: e.target.value });
     }
-  }
+  };
 
   const handleCreateWordPress = () => {
-    const payload = wordpressData
-    dispatch(createWordpress(payload))
-    handleClose()
-  }
+    const payload = wordpressData;
+    dispatch(createWordpress(payload));
+    handleClose();
+  };
 
   return (
-    <>
-      <div style={{ padding: "30px" }}>
-        <Button variant="contained" onClick={() => makePayment()}>
-          Payment
-        </Button>
-      </div>
-
-      <div style={{ padding: "30px" }}>
-        <Button variant="contained" onClick={() => handleClickOpen()}>
-          Create wordpress application
-        </Button>
-      </div>
+    <div style={{padding:"30px"}}>
+      <Grid
+        container
+        spacing={3}
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        style={{padding:"30px"}}
+      >
+        <Grid item>
+          <Button variant="contained" onClick={() => makePayment()}>
+            Payment
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button variant="contained" onClick={() => handleClickOpen()}>
+            Create wordpress
+          </Button>
+        </Grid>
+      </Grid>
 
       {dialog && (
-        <>
-          <Dialog
-            open={dialog}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              Create Wordpress Application
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <Grid container direction="column" spacing={3} style={{padding:"20px"}}>
-                  <Grid item>
-                    <TextField 
-                      id="outlined-basic" 
-                      label="Environment Name" 
-                      variant="outlined" 
-                      value={wordpressData.name}
-                      onChange={(e)=>handleDataChange(e, "name")}
-                      />
-                    </Grid>
-                  <Grid item>
-                    <TextField 
-                      id="outlined-basic" 
-                      label="Namespace" 
-                      variant="outlined" 
-                      value={wordpressData.namespace}
-                      onChange={(e)=>handleDataChange(e, "namespace")}
-                      />
-                  </Grid>
-                </Grid>
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} variant="contained" color="error">Cancel</Button>
-              <Button onClick={handleCreateWordPress} 
-              variant="contained"
-                disabled={!wordpressData.name || !wordpressData.namespace}
-              >
-                Create
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </>
+        <HomeDialog
+        handleClose={handleClose}
+        dialog={dialog}
+        wordpressData={wordpressData}
+        handleDataChange={handleDataChange}
+        handleCreateWordPress={handleCreateWordPress}
+        />
       )}
-    </>
+
+      {wordpressDetails && wordpressDetails?.data.length > 0 ? (
+          <WordpressTable details={wordpressDetails.data} />
+      ):
+        <h3 style={{textAlign:"center", paddingTop:"50px"}}>No any wordpress is created</h3>
+      }
+    </div>
   );
 }
 

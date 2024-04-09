@@ -3,7 +3,7 @@ import Auth from "../reducer/auth";
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-    // wordpressReducer,
+    wordpressData:wordpressReducer,
     Auth,
 })
 

@@ -1,20 +1,28 @@
-import { CREATE_WORDPRESS, CREATE_WORDPRESS_FAILURE, CREATE_WORDPRESS_SUCCESS } from "../action/wordpress";
-// import initialState from "./initialState";
+import {
+  CREATE_WORDPRESS,
+  CREATE_WORDPRESS_FAILURE,
+  CREATE_WORDPRESS_SUCCESS,
+  FETCH_WORDPRESS_DETAILS,
+  FETCH_WORDPRESS_DETAILS_FAILURE,
+  FETCH_WORDPRESS_DETAILS_SUCCESS,
+} from "../action/wordpress";
 
 const initialState = {
+  wordpressDetails: null,
 };
 
 const wordpressReducer = (state = initialState, payload) => {
   switch (payload.type) {
-    case CREATE_WORDPRESS:
+    case FETCH_WORDPRESS_DETAILS:
       return {
         ...state,
       };
-    case CREATE_WORDPRESS_SUCCESS:
+    case FETCH_WORDPRESS_DETAILS_SUCCESS:
       return {
         ...state,
+        wordpressDetails: payload.data,
       };
-    case CREATE_WORDPRESS_FAILURE:
+    case FETCH_WORDPRESS_DETAILS_FAILURE:
       return {
         ...state,
       };
