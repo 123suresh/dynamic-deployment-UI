@@ -102,42 +102,61 @@ function HomePage() {
   };
 
   return (
-    <div style={{padding:"30px"}}>
+    <div style={{ padding: "30px" }}>
       <Grid
         container
         spacing={3}
-        direction="row"
+        direction="column"
         justifyContent="space-between"
         alignItems="center"
-        style={{padding:"30px"}}
+        style={{}}
       >
         <Grid item>
-          <Button variant="contained" onClick={() => makePayment()}>
-            Payment
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button variant="contained" onClick={() => handleClickOpen()}>
-            Create wordpress
-          </Button>
+          <img
+            src="http://narayanpuri.com/assets/images/works/doman.jpg"
+            alt="Circular Image"
+            style={{
+              borderRadius: "50%", // Makes the image circular
+              width: "300px", // Increased width
+              height: "300px", // Increased height
+              objectFit: "cover", // Ensures the image covers the entire circle area without distortion
+              marginTop: "20px", // Adds space between the text and the image
+            }}
+          />
         </Grid>
       </Grid>
 
-      {dialog && (
-        <HomeDialog
-        handleClose={handleClose}
-        dialog={dialog}
-        wordpressData={wordpressData}
-        handleDataChange={handleDataChange}
-        handleCreateWordPress={handleCreateWordPress}
-        />
-      )}
-
-      {wordpressDetails && wordpressDetails?.data.length > 0 ? (
-          <WordpressTable details={wordpressDetails.data} />
-      ):
-        <h3 style={{textAlign:"center", paddingTop:"50px"}}>No any wordpress is created</h3>
-      }
+      <Grid
+        container
+        spacing={3}
+        direction="column"
+        justifyContent="space-between"
+        alignItems="center"
+        style={{}}
+      >
+        <Grid item>
+          <Grid
+            container
+            spacing={3}
+            direction="column"
+            justifyContent="space-between"
+            // alignItems="center"
+            style={{ padding: "30px", color: "white", fontSize: "25px" }}
+          >
+            <Grid item>Narayan Puri</Grid>
+            <Grid item>Born January 14th, 1969</Grid>
+            <Grid item>
+              “Life and love has no definition. It is a lake that keeps the
+              living struggling to reach the surface while prevents the dead
+              from ever seeing the depths. The struggle to break through the
+              surface is the essence of life.” Born in a middle class family,
+              Narayan Puri is a person who believes in making a place for
+              oneself in the world. He believes in respecting the experienced
+              while loving and supporting beginners.
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </div>
   );
 }

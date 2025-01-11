@@ -14,30 +14,31 @@ import CommonButton from "../../components/CommonButton";
 
 const useStyles = makeStyles((theme) => ({
   navbar__main: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: "#000000",
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    padding: "40px",
   },
   link_set: {
-    paddingLeft: "80px",
+    // paddingLeft: "80px",
     [theme.breakpoints.down("sm")]: {
       display: "flex",
       flexDirection: "column",
     },
   },
-  avatar: {
-    marginRight: "50px",
-    padding: "10px",
-  },
-  avatarContent: {
-    textAlign: "center",
-    padding: "10px",
-  },
+  // avatar: {
+  //   marginRight: "50px",
+  //   padding: "10px",
+  // },
+  // avatarContent: {
+  //   textAlign: "center",
+  //   padding: "10px",
+  // },
   link: {
     textDecoration: "none",
     color: "floralwhite",
-    fontSize: "14px",
+    fontSize: "30px",
     textAlign: "center",
     alignItems: "center",
     paddingLeft: "50px",
@@ -89,7 +90,7 @@ const ResponsiveAppBar = () => {
           }`}
           to="/home"
         >
-          HOME
+          Biography
         </Link>
         <Link
           onClick={() => handleActiveLink("detail")}
@@ -100,42 +101,38 @@ const ResponsiveAppBar = () => {
           }`}
           to="/detail"
         >
-          DETAILS
+          Work
         </Link>
+
+        <Link
+          onClick={() => handleActiveLink("awards")}
+          className={`${classes.link} ${
+            window.location.pathname === "/awards"
+              ? classes.active__link
+              : ""
+          }`}
+          to="/awards"
+        >
+          Awards
+        </Link>
+
+        <Link
+          onClick={() => handleActiveLink("press")}
+          className={`${classes.link} ${
+            window.location.pathname === "/press"
+              ? classes.active__link
+              : ""
+          }`}
+          to="/press"
+        >
+          Press
+        </Link>
+
+        
+
       </div>
       <div className={classes.avatar}>
-        <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Avatar
-                alt="admin profile image"
-                src="https://e7.pngegg.com/pngimages/348/800/png-clipart-man-wearing-blue-shirt-illustration-computer-icons-avatar-user-login-avatar-blue-child.png"
-              />
-            </IconButton>
-          </Tooltip>
-          <Menu
-            sx={{ mt: "45px" }}
-            id="menu-appbar"
-            anchorEl={anchorElUser}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchorElUser)}
-            onClose={handleCloseUserMenu}
-          >
-            <div className={classes.avatarContent}>
-              {/* <Typography>{decodedToken.name}</Typography> */}
-              <hr />
-              <CommonButton buttonName="Logout" onClick={handleLogout} />
-            </div>
-          </Menu>
-        </Box>
+
       </div>
     </div>
   );

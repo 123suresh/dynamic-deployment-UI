@@ -8,14 +8,14 @@ function PrivateRoute() {
 
   return (
     <div>
-      {token ? (
+      {/* {token ? ( */}
         <>
           <ResponsiveAppBar />
           <Outlet />
         </>
-      ) : (
+      {/* ) : (
         <Navigate to="/" />
-      )}
+      )} */}
     </div>
   );
 }
